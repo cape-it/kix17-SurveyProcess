@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<otrs_package version="1.0">
+    <Name>SurveyProcess</Name>
+    <Version>0.99.80</Version>
+    <Framework>17.0.x</Framework>
+    <Framework>17.1.x</Framework>
+    <Vendor>c.a.p.e. IT GmbH</Vendor>
+    <URL>http://www.cape-it.de/</URL>
+    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <Description Lang="en">Customer specific extension</Description>
+    <Filelist>
+        <File Permission="644" Location="doc/CHANGES_SurveyProcess.md" />
+
+        <File Permission="644" Location="var/packagesetup/SurveyProcess.pm" />
+    </Filelist>
+    <DatabaseInstall>
+    </DatabaseInstall>
+    <DatabaseReinstall>
+    </DatabaseReinstall>
+    <DatabaseUpgrade>
+    </DatabaseUpgrade>
+    <DatabaseUninstall>
+    </DatabaseUninstall>
+    <CodeInstall Type="post">
+        <![CDATA[
+my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
+$Kernel::OM->Get($CodeModule)->CodeInstall();
+        ]]>
+    </CodeInstall>
+    <CodeReinstall Type="post">
+        <![CDATA[
+my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
+# discard internally stored object, so that the next access to object creates them newly
+$Kernel::OM->ObjectsDiscard(
+    Objects            => [$CodeModule],
+    ForcePackageReload => 1,
+);
+$Kernel::OM->Get($CodeModule)->CodeReinstall();
+        ]]>
+    </CodeReinstall>
+    <CodeUpgrade Type="post">
+        <![CDATA[
+my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
+# discard internally stored object, so that the next access to object creates them newly
+$Kernel::OM->ObjectsDiscard(
+    Objects            => [$CodeModule],
+    ForcePackageReload => 1,
+);
+$Kernel::OM->Get($CodeModule)->CodeUpgrade();
+        ]]>
+    </CodeUpgrade>
+    <CodeUninstall Type="pre">
+        <![CDATA[
+my $CodeModule = 'var::packagesetup::' . $Param{Structure}->{Name}->{Content};
+# discard internally stored object, so that the next access to object creates them newly
+$Kernel::OM->ObjectsDiscard(
+    Objects            => [$CodeModule],
+    ForcePackageReload => 1,
+);
+$Kernel::OM->Get($CodeModule)->CodeUninstall();
+        ]]>
+    </CodeUninstall>
+    <CodeUninstall Type="post">
+        <![CDATA[
+# create needed sysconfig object...
+$Kernel::OM->Get('Kernel::System::SysConfig')->WriteDefault();
+my @ZZZFiles = (
+    'ZZZAAuto.pm',
+    'ZZZAuto.pm',
+);
+
+# reload the ZZZ files (mod_perl workaround)
+for my $ZZZFile (@ZZZFiles) {
+    PREFIX:
+    for my $Prefix (@INC) {
+        my $File = $Prefix . '/Kernel/Config/Files/' . $ZZZFile;
+        if ( !-f $File ) {
+            next PREFIX
+        }
+        do $File;
+        last PREFIX;
+    }
+}
+        ]]>
+    </CodeUninstall>
+    <IntroInstall Type="pre" Title="Install Information" Lang="en">
+        <![CDATA[
+<br/>
+WELCOME<br/>
+<br/>
+You are about to install SurveyProcess for KIX.<br/>
+<br/>
+<br/>
+c.a.p.e. IT ...easy.
+        ]]>
+    </IntroInstall>
+    <IntroInstall Type="post" Title="Install Information" Lang="en">
+        <![CDATA[
+<br/>
+The package has been installed.<br/>
+<br/>
+<br/>
+c.a.p.e. IT ...easy.
+        ]]>
+    </IntroInstall>
+    <IntroUpgrade Type="pre" Title="Upgrade Information" Lang="en">
+        <![CDATA[
+<br/>
+WELCOME<br/>
+<br/>
+You are about to upgrade SurveyProcess for KIX.<br/>
+<br/>
+<br/>
+c.a.p.e. IT ...easy.
+        ]]>
+    </IntroUpgrade>
+    <IntroUpgrade Type="post" Title="Upgrade Information" Lang="en">
+        <![CDATA[
+<br/>
+The package has been upgraded.<br/>
+<br/>
+<br/>
+c.a.p.e. IT ...easy.
+        ]]>
+    </IntroUpgrade>
+    <IntroUninstall Type="pre" Title="Uninstall Information" Lang="en">
+        <![CDATA[
+<br/>
+WELCOME<br/>
+<br/>
+You are about to UNINSTALL SurveyProcess for KIX.<br/>
+<br/>
+<br/>
+c.a.p.e. IT ...easy.
+        ]]>
+    </IntroUninstall>
+    <IntroUninstall Type="post" Title="Uninstall Information" Lang="en">
+        <![CDATA[
+<br/>
+The package has been uninstalled.<br/>
+<br/>
+<br/>
+c.a.p.e. IT ...easy.
+        ]]>
+    </IntroUninstall>
+</otrs_package>

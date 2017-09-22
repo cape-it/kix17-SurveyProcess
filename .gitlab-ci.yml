@@ -1,0 +1,60 @@
+variables:
+  MAIL_RECIPIENT: "developers@cape-it.de"
+
+stages:
+- test
+- build
+- deploy
+
+Test_PerlCritic:
+  tags:
+  - PerlCritic
+  stage: test
+  script:
+  - perlcritic --quiet --statistics -4 $CI_PROJECT_DIR
+  allow_failure: true
+
+Test_OPMBuild:
+  artifacts:
+    paths: 
+      - "doc/*.md"
+    when: on_success
+    expire_in: 1 day
+  tags:
+  - OPMBuild
+  stage: test
+  script:
+  - mkdir -p $CI_PROJECT_DIR/doc
+  - cp $CI_PROJECT_DIR/CHANGELOG $CI_PROJECT_DIR/doc/CHANGES_$CI_PROJECT_NAME.md
+  - opmbuild filetest $CI_PROJECT_NAME.sopm
+
+Build_OPMBuild:
+  artifacts:
+    paths: 
+      - "*.opm"
+    when: on_success
+    expire_in: 1 day
+  tags:
+  - OPMBuild
+  stage: build
+  when: on_success
+  dependencies:
+  - Test_OPMBuild
+  script:
+  - opmbuild build $CI_PROJECT_NAME.sopm
+
+Deploy_OPMBuild:
+  tags:
+  - OPMBuild
+  stage: deploy
+  when: on_success
+  only:
+  - /^rel-[0-9]+_[0-9]+_[0-9]+$/
+  except:
+  - branches
+  dependencies:
+  - Build_OPMBuild
+  script:
+  - mkdir -p /opt/opmbuild/builds/$CI_PROJECT_PATH
+  - cp $CI_PROJECT_DIR/$CI_PROJECT_NAME-*.opm /opt/opmbuild/builds/$CI_PROJECT_PATH/
+  - deploynotification "$CI_PROJECT_DIR" "$CI_PROJECT_PATH" "$CI_PROJECT_NAME" "$MAIL_RECIPIENT"

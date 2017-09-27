@@ -1,0 +1,33 @@
+---
+- EventValues:
+  - TicketStateUpdate
+  - TicketCreate
+  Name: Survey Process - Start Survey
+  NewModule: Kernel::System::GenericAgent::SurveyProcessStart
+  StateNames:
+  - closed successful
+  - closed unsuccessful
+  - closed with workaround
+  ValidName: 'valid'
+- Name: Survey Process - Abort Survey
+  ScheduleDays:
+  - '0'
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  ScheduleHours:
+  - '5'
+  ScheduleLastRun: ''
+  ScheduleMinutes:
+  - '10'
+  Search_DynamicField_CustomerSatisfactionStatus:
+  - requested
+  Search_DynamicField_CustomerSatisfactionSurveyEndDateTimePoint: '1'
+  Search_DynamicField_CustomerSatisfactionSurveyEndDateTimePointFormat: day
+  Search_DynamicField_CustomerSatisfactionSurveyEndDateTimePointStart: Last
+  Search_DynamicField_CustomerSatisfactionSurveyEndDateTimePointValue: '3'
+  ValidName: 'valid'
+  DynamicField_CustomerSatisfactionStatus: canceled

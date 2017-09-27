@@ -1,0 +1,56 @@
+---
+- ChangeBy: '2'
+  ChangeTime: 2017-09-27 07:44:21
+  Comment: Created by package SurveyProcess.
+  CreateBy: '1'
+  CreateTime: 2017-09-26 12:52:30
+  Data:
+    AgentEnabledByDefault:
+    - Email
+    ArticleAttachmentInclude:
+    - '0'
+    Events:
+    - TicketDynamicFieldUpdate_CustomerSatisfactionStatus
+    LanguageID:
+    - en
+    NotificationArticleTypeID:
+    - '3'
+    NotificationType:
+    - Ticket
+    RecipientDecay:
+    - '1440'
+    RecipientSubject:
+    - '1'
+    - '1'
+    Recipients:
+    - Customer
+    Search_DynamicField_CustomerSatisfactionStatus:
+    - requested
+    TransportEmailTemplate:
+    - Default
+    Transports:
+    - Email
+    VisibleForAgent:
+    - '0'
+  ID: '18'
+  Message:
+    en:
+      Body: 'Dear &lt;KIX_CUSTOMER_REALNAME&gt;,<br />
+
+        <br />
+
+        Your request [&lt;KIX_CONFIG_Ticket::Hook&gt;&lt;KIX_TICKET_TicketNumber&gt;]
+        has been finally processed.<br />
+
+        <br />
+
+        Please help us to improve our service and give us your feedback <a href="&lt;KIX_CONFIG_HttpType&gt;://&lt;KIX_CONFIG_FQDN&gt;/&lt;KIX_CONFIG_ScriptAlias&gt;customer.pl?Action=CustomerTicketZoom&amp;TicketNumber=&lt;KIX_TICKET_TicketNumber&gt;">here</a>.<br
+        />
+
+        <br />
+
+        Thank you very much and have a great day.'
+      ContentType: text/html
+      Subject: Customer Satisfaction Survey
+  Name: Survey Process - Customer Satisfaction Survey
+  ValidID: '1'

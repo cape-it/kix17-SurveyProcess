@@ -1,0 +1,113 @@
+---
+Activities:
+  Activity-08c7c159e5f325d2da9ce53935aba2d4:
+    ActivityDialogs:
+    - ActivityDialog-8bab43f5ba68101164a60f164accfc35
+    ChangeTime: 2017-09-26 13:19:05
+    Config:
+      ActivityDialog:
+        '1': ActivityDialog-8bab43f5ba68101164a60f164accfc35
+    CreateTime: 2017-09-26 13:19:05
+    EntityID: Activity-08c7c159e5f325d2da9ce53935aba2d4
+    ID: '1'
+    Name: Survey Customer Satisfaction
+  Activity-645c516c4c28e2a4d7fdee100fda78d2:
+    ActivityDialogs: []
+    ChangeTime: 2017-09-26 13:19:33
+    Config: {}
+    CreateTime: 2017-09-26 13:19:33
+    EntityID: Activity-645c516c4c28e2a4d7fdee100fda78d2
+    ID: '2'
+    Name: Process End
+ActivityDialogs:
+  ActivityDialog-8bab43f5ba68101164a60f164accfc35:
+    ChangeTime: 2017-09-27 08:07:53
+    Config:
+      DescriptionLong: ''
+      DescriptionShort: Participating in our customer satisfaction survey.
+      FieldOrder:
+      - DynamicField_CustomerSatisfactionGrade
+      - DynamicField_CustomerStatisfactionRemark
+      Fields:
+        DynamicField_CustomerSatisfactionGrade:
+          DefaultValue: ''
+          DescriptionLong: ''
+          DescriptionShort: ''
+          Display: '2'
+        DynamicField_CustomerStatisfactionRemark:
+          DefaultValue: ''
+          DescriptionLong: ''
+          DescriptionShort: ''
+          Display: '1'
+      Interface:
+      - CustomerInterface
+      Permission: ''
+      RequiredLock: '0'
+      SubmitAdviceText: ''
+      SubmitButtonText: ''
+    CreateTime: 2017-09-26 13:18:35
+    EntityID: ActivityDialog-8bab43f5ba68101164a60f164accfc35
+    ID: '1'
+    Name: Survey Customer Satisfaction
+Process:
+  Activities:
+  - Activity-08c7c159e5f325d2da9ce53935aba2d4
+  - Activity-645c516c4c28e2a4d7fdee100fda78d2
+  ChangeTime: 2017-09-26 13:46:34
+  Config:
+    CustomerPortalGroupID: '3'
+    Description: This process implements an after-ticket-close customer satisfaction
+      survey. The process is startet automatically by a generic agent.
+    Path:
+      Activity-08c7c159e5f325d2da9ce53935aba2d4:
+        Transition-26c6ae685aa76f52250ca2becf274f6d:
+          ActivityEntityID: Activity-645c516c4c28e2a4d7fdee100fda78d2
+          TransitionAction:
+          - TransitionAction-1cf99507daf3c284f79783dc5041e0d9
+      Activity-645c516c4c28e2a4d7fdee100fda78d2: {}
+    StartActivity: Activity-08c7c159e5f325d2da9ce53935aba2d4
+    StartActivityDialog: ActivityDialog-8bab43f5ba68101164a60f164accfc35
+  CreateTime: 2017-09-26 13:16:39
+  EntityID: Process-e42cd00ee2018b6dbd551d74009831f6
+  ID: '1'
+  Layout:
+    Activity-08c7c159e5f325d2da9ce53935aba2d4:
+      left: '222'
+      top: '14'
+    Activity-645c516c4c28e2a4d7fdee100fda78d2:
+      left: '512'
+      top: '186'
+  Name: SurveyProcess
+  State: FadeAway
+  StateEntityID: S3
+  TransitionActions:
+  - TransitionAction-1cf99507daf3c284f79783dc5041e0d9
+  Transitions:
+  - Transition-26c6ae685aa76f52250ca2becf274f6d
+TransitionActions:
+  TransitionAction-1cf99507daf3c284f79783dc5041e0d9:
+    ChangeTime: 2017-09-27 08:07:36
+    Config:
+      Config:
+        CustomerSatisfactionStatus: done
+      Module: Kernel::System::ProcessManagement::TransitionAction::DynamicFieldSet
+    CreateTime: 2017-09-26 13:25:54
+    EntityID: TransitionAction-1cf99507daf3c284f79783dc5041e0d9
+    ID: '1'
+    Name: Survey Set DF CustomerSatisfactionStatus
+Transitions:
+  Transition-26c6ae685aa76f52250ca2becf274f6d:
+    ChangeTime: 2017-09-27 08:11:33
+    Config:
+      Condition:
+        '1':
+          Fields:
+            DynamicField_CustomerSatisfactionGrade:
+              Match: .+
+              Type: Regexp
+          Type: and
+      ConditionLinking: and
+    CreateTime: 2017-09-26 13:20:13
+    EntityID: Transition-26c6ae685aa76f52250ca2becf274f6d
+    ID: '1'
+    Name: Survey Customer Satisfaction End

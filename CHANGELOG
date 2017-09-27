@@ -2,6 +2,8 @@
 * Copyright (C) 2006-2017 c.a.p.e. IT GmbH, http://www.cape-it.de/
 
 # ROADMAP
+# r17.0.0 (2017/09/28)
+* (2017/09/28) - CR: T2017092290000822 (First release for productive use) (tto)
 
 # r0.99.80 (2017/09/28)
 * (2017/09/27) - CR: T2017092290000822 (First release for preproductive testing) (tto)

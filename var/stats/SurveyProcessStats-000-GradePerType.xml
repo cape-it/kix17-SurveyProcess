@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<otrs_stats>
+<Cache>0</Cache>
+<Description>This report shows the number of tickets per satisfaction grade grouped by ticket type.</Description>
+<Format>CSV</Format>
+<Format>Excel</Format>
+<Format>D3::BarChart</Format>
+<Format>D3::LineChart</Format>
+<Format>D3::StackedAreaChart</Format>
+<Format>Print</Format>
+<Object>Ticket</Object>
+<ObjectModule>Kernel::System::Stats::Dynamic::Ticket</ObjectModule>
+<ObjectName>TicketAccumulation</ObjectName>
+<Permission>stats</Permission>
+<ShowAsDashboardWidget>1</ShowAsDashboardWidget>
+<StatType>dynamic</StatType>
+<SumCol>0</SumCol>
+<SumRow>0</SumRow>
+<Title>Customer Satisfaction</Title>
+<UseAsValueSeries Element="TypeIDs" Fixed="1">
+</UseAsValueSeries>
+<UseAsXvalue Element="DynamicField_CustomerSatisfactionGrade" Fixed="1">
+</UseAsXvalue>
+<Valid>1</Valid>
+</otrs_stats>

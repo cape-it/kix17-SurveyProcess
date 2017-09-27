@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_config version="1.0" init="KIXConfig">
-
-  <ConfigItem Name="Ticket::EventModulePost###500-SurveyProcessEnd" Required="0" Valid="1">
-       <Description>Resets the process-assignment of a ticket to a previously set if they were stored in other dynamic fields</Description>
-       <Group>SuveyProcess</Group>
-       <SubGroup>Ticket::Core</SubGroup>
-       <Setting>
-           <Hash>
-               <Item Key="Module">Kernel::System::Ticket::Event::SurveyProcessEnd</Item>
-               <Item Key="Event">(TicketDynamicFieldUpdate_CustomerSatisfactionStatus)</Item>
-               <Item Key="EndStatusRegEx">(done|canceled)</Item>
-           </Hash>
-       </Setting>
-   </ConfigItem>
-
-
+    <ConfigItem Name="Ticket::EventModulePost###500-SurveyProcessEnd" Required="0" Valid="1">
+    <Description>Resets the process-assignment of a ticket to a previously set if they were stored in other dynamic fields.</Description>
+    <Group>SuveyProcess</Group>
+    <SubGroup>Ticket::Core</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="Module">Kernel::System::Ticket::Event::SurveyProcessEnd</Item>
+                <Item Key="Event">(TicketDynamicFieldUpdate_CustomerSatisfactionStatus)</Item>
+                <Item Key="EndStatusRegEx">(done|canceled)</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
     <ConfigItem Name="SurveyProcess::DynamicFieldProcessManagementProcessID" Required="1" Valid="1">
         <Description>This option defines which dynamic field is used to store the current Process Management process entity when assigning the survey process.</Description>
         <Group>SuveyProcess</Group>
@@ -40,7 +37,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="SurveyProcess::ParticipationProbability" Required="1" Valid="1">
-        <Description Translatable="1">This option defines to which probability the ticket is assigned to the survey process. USe only values between 0 and 100.</Description>
+        <Description Translatable="1">This option defines to which probability the ticket is assigned to the survey process. Use only values between 0 and 100.</Description>
         <Group>SuveyProcess</Group>
         <SubGroup>Core</SubGroup>
         <Setting>
@@ -48,7 +45,7 @@
         </Setting>
     </ConfigItem>
     <ConfigItem Name="SurveyProcess::ParticipationDuration" Required="1" Valid="1">
-        <Description Translatable="1">This option defines How many days the satisfaction survey for a ticket will be possible. The countdown starts when the survey is assigned. The countdown is ended by a generic agent.</Description>
+        <Description Translatable="1">This option defines how many days the satisfaction survey for a ticket will be possible. The countdown starts when the survey is assigned. The countdown is ended by a generic agent.</Description>
         <Group>SuveyProcess</Group>
         <SubGroup>Core</SubGroup>
         <Setting>

@@ -11,13 +11,14 @@
     <Filelist>
         <File Permission="644" Location="doc/CHANGES_SurveyProcess.md" />
         <File Permission="644" Location="Kernel/Config/Files/SurveyProcess.xml"/>
+        <File Permission="644" Location="Kernel/Language/de_SurveyProcess.pm"/>
         <File Permission="644" Location="Kernel/System/GenericAgent/SurveyProcessStart.pm"/>
         <File Permission="644" Location="Kernel/System/Ticket/Event/SurveyProcessEnd.pm"/>
-        <File Permission="644" Location="var/packagesetup/InitialSetup/SurveyProcess_ACLConfiguration.yml"/>
+        <!-- <File Permission="644" Location="var/packagesetup/InitialSetup/SurveyProcess_ACLConfiguration.yml"/> -->
         <File Permission="644" Location="var/packagesetup/InitialSetup/SurveyProcess_GenericAgents.yml"/>
         <File Permission="644" Location="var/packagesetup/InitialSetup/SurveyProcess_Notification_Survey.yml"/>
         <File Permission="644" Location="var/packagesetup/InitialSetup/SurveyProcess_Process.yml"/>
-        <File Permission="644" Location="var/packagesetup/InitialSetup/SurveyProcess_QGR.csv"/>
+        <!-- <File Permission="644" Location="var/packagesetup/InitialSetup/SurveyProcess_QGR.csv"/> -->
         <File Permission="644" Location="var/stats/SurveyProcessStats-000-GradePerType.xml"/>
         <File Permission="644" Location="var/packagesetup/SurveyProcess.pm" />
     </Filelist>

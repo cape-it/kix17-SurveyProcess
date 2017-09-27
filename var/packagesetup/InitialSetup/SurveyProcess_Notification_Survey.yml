@@ -1,9 +1,9 @@
 ---
 - ChangeBy: '2'
-  ChangeTime: 2017-09-27 07:44:21
+  ChangeTime: 2017-09-27 15:23:13
   Comment: Created by package SurveyProcess.
   CreateBy: '1'
-  CreateTime: 2017-09-26 12:52:30
+  CreateTime: 2017-09-27 15:01:30
   Data:
     AgentEnabledByDefault:
     - Email
@@ -12,6 +12,7 @@
     Events:
     - TicketDynamicFieldUpdate_CustomerSatisfactionStatus
     LanguageID:
+    - de
     - en
     NotificationArticleTypeID:
     - '3'
@@ -34,6 +35,27 @@
     - '0'
   ID: '18'
   Message:
+    de:
+      Body: 'Sehr geehrte/r &lt;KIX_CUSTOMER_REALNAME&gt;,<br />
+
+        <br />
+
+        Ihre Anfrage [&lt;KIX_CONFIG_Ticket::Hook&gt;&lt;KIX_TICKET_TicketNumber&gt;]
+        wurde abgeschlossen.<br />
+
+        <br />
+
+        Bitte unterstützen Sie uns um unseren Service noch weiter zu verbessern, indem
+        Sie an <a href="&lt;KIX_CONFIG_HttpType&gt;://&lt;KIX_CONFIG_FQDN&gt;/&lt;KIX_CONFIG_ScriptAlias&gt;customer.pl?Action=CustomerTicketZoom&amp;TicketNumber=&lt;KIX_TICKET_TicketNumber&gt;">dieser
+        Umfrage</a>&nbsp;teilnehmen.<br />
+
+        <br />
+
+        Vielen Dank und einen angenehmen Tag.<br />
+
+        &nbsp;'
+      ContentType: text/html
+      Subject: Kundenzufriedenheitsumfrage
     en:
       Body: 'Dear &lt;KIX_CUSTOMER_REALNAME&gt;,<br />
 
@@ -49,7 +71,9 @@
 
         <br />
 
-        Thank you very much and have a great day.'
+        Thank you very much and have a great day.<br />
+
+        &nbsp;'
       ContentType: text/html
       Subject: Customer Satisfaction Survey
   Name: Survey Process - Customer Satisfaction Survey

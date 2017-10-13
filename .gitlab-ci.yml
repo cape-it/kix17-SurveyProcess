@@ -52,6 +52,9 @@ Deploy_OPMBuild:
   - /^rel-[0-9]+_[0-9]+_[0-9]+$/
   except:
   - branches
+  environment:
+    name: OPM-Repository
+    url: http://git.intra.cape-it.de:8088/builds/$CI_PROJECT_PATH/
   dependencies:
   - Build_OPMBuild
   script:

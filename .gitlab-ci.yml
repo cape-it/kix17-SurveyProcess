@@ -2,62 +2,103 @@ variables:
   MAIL_RECIPIENT: "developers@cape-it.de"
 
 stages:
-- test
+- prepare
+- pretest
 - build
 - deploy
 
-Test_PerlCritic:
-  tags:
-  - PerlCritic
-  stage: test
-  script:
-  - perlcritic --quiet --statistics -4 $CI_PROJECT_DIR
-  allow_failure: true
-
-Test_OPMBuild:
+prepare:Documentation:
+  allow_failure: false
   artifacts:
-    paths: 
-      - "doc/*.md"
-    when: on_success
     expire_in: 1 day
-  tags:
-  - OPMBuild
-  stage: test
+    paths:
+    - "doc/*.md"
+    when: on_success
   script:
   - mkdir -p $CI_PROJECT_DIR/doc
   - cp $CI_PROJECT_DIR/CHANGELOG $CI_PROJECT_DIR/doc/CHANGES_$CI_PROJECT_NAME.md
-  - opmbuild filetest $CI_PROJECT_NAME.sopm
+  stage: prepare
+  tags:
+  - Shell
 
-Build_OPMBuild:
+pretest:SOPMFileCheck:
+  allow_failure: false
+  dependencies:
+  - prepare:Documentation
+  script:
+  - sopmfilecheck "$CI_PROJECT_DIR" "$CI_PROJECT_NAME.sopm"
+  stage: pretest
+  tags:
+  - Shell
+  when: on_success
+
+pretest:PerlCritic:
+  allow_failure: true
+  tags:
+  - PerlCritic
+  script:
+  - perlcritic --quiet --statistics -4 $CI_PROJECT_DIR
+  stage: pretest
+  tags:
+  - Shell
+  when: on_success
+
+build:OPMBuild:Dev:
+  allow_failure: false
   artifacts:
     paths: 
-      - "*.opm"
+    - "*.opm"
     when: on_success
     expire_in: 1 day
-  tags:
-  - OPMBuild
-  stage: build
-  when: on_success
   dependencies:
-  - Test_OPMBuild
+  - prepare:Documentation
+  only:
+  - branches
   script:
+  - sed -i -e "s:\(<Version>.*\)\(</Version>\):\1.$(date +%s)\2:" $CI_PROJECT_NAME.sopm
   - opmbuild build $CI_PROJECT_NAME.sopm
-
-Deploy_OPMBuild:
+  stage: build
   tags:
   - OPMBuild
-  stage: deploy
   when: on_success
-  only:
-  - /^rel-[0-9]+_[0-9]+_[0-9]+$/
+
+build:OPMBuild:Release:
+  allow_failure: false
+  artifacts:
+    paths: 
+    - "*.opm"
+    when: on_success
+    expire_in: 1 day
+  dependencies:
+  - prepare:Documentation
   except:
   - branches
+  only:
+  - /^rel-[0-9]+_[0-9]+_[0-9]+$/
+  script:
+  - opmbuild build $CI_PROJECT_NAME.sopm
+  stage: build
+  tags:
+  - OPMBuild
+  when: on_success
+
+deploy:OPMBuild:Release:
+  allow_failure: false
+  dependencies:
+  - build:OPMBuild:Release
   environment:
     name: OPM-Repository
     url: http://git.intra.cape-it.de:8088/builds/$CI_PROJECT_PATH/
-  dependencies:
-  - Build_OPMBuild
+  except:
+  - branches
+  only:
+  - /^rel-[0-9]+_[0-9]+_[0-9]+$/
   script:
   - mkdir -p /opt/opmbuild/builds/$CI_PROJECT_PATH
-  - cp $CI_PROJECT_DIR/$CI_PROJECT_NAME-*.opm /opt/opmbuild/builds/$CI_PROJECT_PATH/
+  - cp -f $CI_PROJECT_DIR/$CI_PROJECT_NAME-*.opm /opt/opmbuild/builds/$CI_PROJECT_PATH/
   - deploynotification "$CI_PROJECT_DIR" "$CI_PROJECT_PATH" "$CI_PROJECT_NAME" "$MAIL_RECIPIENT"
+  - deploydb "$CI_PROJECT_NAME" "$CI_BUILD_REF_NAME"
+  stage: deploy
+  tags:
+  - Shell
+  when: on_success

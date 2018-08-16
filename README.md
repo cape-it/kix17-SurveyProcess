@@ -1,5 +1,5 @@
 # General Information #
-* [OPM-Repository](http://git.intra.cape-it.de:8088/builds/Customerprojects/Generic/SurveyProcess/)
+* [OPM-Repository](http://git.intra.cape-it.de:8088/builds/Customerprojects/ESO/SurveyProcess/)
 
 # Package Description
 

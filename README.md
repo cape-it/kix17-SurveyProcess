@@ -1,6 +1,7 @@
 # General Information #
-- [OPM-Repository](http://git.intra.cape-it.de:8088/builds/Customerprojects/Generic/SurveyProcess/)
-- ProductOwner: [Torsten Thau](mailto: torsten.thau@cape-it.de)
+
+**This package will be published and synchroniezd to [github](https://github.com/cape-it).**
+
 
 
 # Package Description

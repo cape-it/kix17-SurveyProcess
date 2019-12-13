@@ -1,14 +1,17 @@
 # General Information #
 
-**This package will be published and synchroniezd to [github](https://github.com/cape-it).**
-
+**This package will be published and synchronized to [github](https://github.com/cape-it).**
 
 
 # Package Description
 
-The survey process consists of one activity which provides an activity dialog only accessible via the customer frontend. In this dialog it is possible to enter a satisfaction grade (1...5) and a remark. If additional data should be collected, you may add own dynamic fields. Be aware that the process definition is updated on package re-/installation and update.
+This package provides a simple post ticket handling survey. Goal of the survey is to get feedback on the quality of your servicedesk and being able to relate textual feedback to very tickets. 
 
-The package creates following dynmic fields which are used in the survey process:
+In order to provide this functionality a ticket is assigned to a simple process, where the customer contact is able to express his/her satisfaction with the tickets outcome. 
+
+The survey process consists of one activity which provides an activity dialog only accessible via the customer frontend. In this dialog it is possible to enter a satisfaction grade (1...5) and a remark. If additional data should be collected, you may add own dynamic fields. **Be aware that the process definition is updated on package re-/installation and update.**
+
+The package automatically creates following dynmic fields which are used in the survey process:
 
 - CustomerSatisfactionStatus
 - CustomerSatisfactionGrade

@@ -1068,6 +1068,8 @@ sub _NotificationImport {
             }
         }
     }
+
+    return 1;
 }
 
 

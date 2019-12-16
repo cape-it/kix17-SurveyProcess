@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <otrs_package version="1.0">
     <Name>SurveyProcess</Name>
-    <Version>17.0.0</Version>
+    <Version>17.0.1</Version>
     <Framework>17.x.x</Framework>
     <Vendor>c.a.p.e. IT GmbH</Vendor>
     <URL>http://www.cape-it.de/</URL>

@@ -1,5 +1,9 @@
 # Change log of SurveyProcess
-* Copyright (C) 2006-2017 c.a.p.e. IT GmbH, http://www.cape-it.de/
+* Copyright (C) 2006-2019 c.a.p.e. IT GmbH, https://www.cape-it.de/
+
+# 17.0.1 (2019/12/16)
+ * (2019/12/16) - CR: T2019111490000937 (fix install - perl critic) (fober)
+ * (2019/12/16) - CR: T2019111490000937 (update requirements for framework) (fober)
 
 # ROADMAP
 # r17.0.0 (2017/09/28)

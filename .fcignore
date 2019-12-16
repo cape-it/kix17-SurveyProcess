@@ -1,0 +1,10 @@
+^\.git\/
+^\.gitignore$
+^\.gitlab-ci\.yml$
+^\.fcignore$
+\.odg$
+\.odt$
+\.sopm$
+^CHANGELOG$
+^LICENSE$
+^README\.md$
